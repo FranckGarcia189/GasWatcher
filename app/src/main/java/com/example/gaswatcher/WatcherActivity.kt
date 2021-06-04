@@ -10,20 +10,20 @@ import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.*
 import kotlinx.android.synthetic.main.activity_watcher.*
+import kotlinx.android.synthetic.main.closer_harbor_row.view.*
 
 
 class WatcherActivity : AppCompatActivity() {
 
     lateinit var mFusedLocationClient: FusedLocationProviderClient
     lateinit var harborManager : HarborManager
+    lateinit var linearLayoutManager : LinearLayoutManager
 
     interface ServerCallback {
         fun onSuccess(result: Boolean?)
@@ -35,6 +35,7 @@ class WatcherActivity : AppCompatActivity() {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         harborManager = HarborManager()
+
 
         harborManager.initHarborList(applicationContext,
             object : ServerCallback {
@@ -116,7 +117,6 @@ class WatcherActivity : AppCompatActivity() {
     }
 
 
-
     private fun initHarborSpinner(spinner : Spinner, harborList : ArrayList<Harbor>) {
         var itemList : ArrayList<String> = ArrayList<String>()
         itemList.add("Choisir")
@@ -140,7 +140,27 @@ class WatcherActivity : AppCompatActivity() {
                         var harborPosition : Harbor? = harborManager.harborList.find { it.harborNom == spin_harbor.selectedItem.toString() }
                         if (harborPosition != null) {
                             tv_my_position.text = "lat : "+harborPosition.harborLat+" | lon : "+harborPosition.harborLon
+                            var myPosition : Location = Location("")
+                            myPosition.latitude = harborPosition.harborLat.toDouble()
+                            myPosition.longitude = harborPosition.harborLon.toDouble()
+
+                            var closerHarborList : ArrayList<Harbor> = ArrayList<Harbor>()
+                           var dataOK : Boolean = false
+
+                            closerHarborList = harborManager.getCloserHarborList(applicationContext,
+                                myPosition, harborManager.harborList, object :
+                                    HarborManager.Callback {
+                                    override fun onSuccess(result: Boolean?) {
+                                       dataOK = true
+                                    }
+                                })
+                            if (dataOK) {
+                                val adapter : CloserHarborArrayAdapter = CloserHarborArrayAdapter(applicationContext, closerHarborList)
+                                lw_closerHarbor.adapter = adapter
+                                Log.i("API", "liste closer sortie : "+ closerHarborList.size)
+                            }
                         }
+
                     }
                 }
 

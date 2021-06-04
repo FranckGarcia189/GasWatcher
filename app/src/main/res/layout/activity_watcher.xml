@@ -110,8 +110,8 @@
                     android:layout_weight="1"
                     android:minWidth="30dp"
                     android:paddingStart="10dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
                     app:srcCompat="@drawable/lighthouse" />
 
                 <LinearLayout
@@ -159,19 +159,14 @@
             android:text="@string/get_harbor"
             android:textSize="18dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycle_harbor"
+        <ListView
+            android:id="@+id/lw_closerHarbor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:background="#FFFFFF"
-            android:paddingStart="10dp"
-            android:paddingTop="15dp"
-            android:paddingEnd="10dp"
-            android:scrollbarThumbHorizontal="@color/gw_default"
-            android:scrollbars="vertical"
-            android:verticalScrollbarPosition="right" />
+            android:layout_marginBottom="10dp"
+            android:background="#FFFFFF" />
 
     </LinearLayout>
 
