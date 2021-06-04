@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">GasWatcher</string>
+    <string name="login">Identifiant</string>
+    <string name="password">Mot de passe</string>
+    <string name="connection">Se connecter</string>
+    <string name="miss_data">Pseudonyme et/ou mot de passe non saisi</string>
+    <string name="error_connect">Echec connexion, veuillez réessayer</string>
+    <string name="create_account">Créer un compte</string>
+    <string name="welcomeback">Bon retour parmi nous matelot !</string>
+    <string name="sel_position">Sélectionnez votre position</string>
+    <string name="email">Une adresse email</string>
+    <string name="create_login">Un pseudonyme</string>
+    <string name="create_password">Un mot de passe</string>
+    <string name="confirm_password">Confirmer le mot de passe</string>
+    <string name="create_my_account">Créer</string>
+    <string name="back_to_connection">Se connecter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="choose_harbor">Choisir ma position</string>
+    <string name="my_position">Calculer ma position</string>
+    <string name="add_harbor">+ Ajouter un port</string>
+    <string name="destination_harbor">Position : -</string>
+    <string name="get_harbor">Les ports les plus proches (10 miles)</string>
+</resources>

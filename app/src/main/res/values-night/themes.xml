@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.GasWatcher" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/gw_default</item>
+        <item name="colorPrimaryVariant">@color/gw_secondary</item>
+        <item name="colorOnPrimary">@color/gw_icon</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/gw_zero</item>
+        <item name="colorSecondaryVariant">@color/gw_zeroVariant</item>
+        <item name="colorOnSecondary">@color/gw_zeroText</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

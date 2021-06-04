@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- primary -->
+    <color name="gw_default">#3C455A</color>
+    <color name="gw_secondary">#5874B6</color>
+    <color name="gw_icon">#FF5A00</color>
+    <!-- secondary -->
+    <color name="gw_zero">#00FFFFFF</color>
+    <color name="gw_zeroVariant">#00FFFFFF</color>
+    <color name="gw_zeroText">#5874B6</color>
+    <color name="gw_mid">#B3FFFFFF</color>
+    <color name="gw_backwatcher">#B3E0E6FF</color>
+    <color name="gw_orange">#FF5A00</color>
+</resources>
