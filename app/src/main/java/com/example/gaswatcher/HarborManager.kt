@@ -76,7 +76,7 @@ class HarborManager {
     }
 
 
-    fun getPriceDatas (context: Context, harbor_id: String, closeHarbor : Harbor) : Harbor{
+    fun getPriceDatas (context: Context, harbor_id: String, closeHarbor : Harbor, callback : Callback) : Harbor{
         val queue = Volley.newRequestQueue(context)
         val url: String = "https://www.teleobjet.fr/Ports/portprix.php/"+harbor_id
         Log.d("API", "on a la queue et la string prix")
@@ -94,8 +94,9 @@ class HarborManager {
                     obj.getString("sp98"),
                     obj.getString("jour")
                 )
-                Log.d("API", "le gazole : "+closeHarbor.harborGazole.toString())
-               // param.onSuccess(true)
+                Log.d("API", "le gazole : "+closeHarbor.harborGazole)
+
+                callback.onSuccess(true)
 
             },
             Response.ErrorListener {
@@ -106,7 +107,8 @@ class HarborManager {
         return closeHarbor
     }
 
-    fun getCloserHarborList(context : Context, myPosition : Location, harborList : ArrayList<Harbor>, param: Callback) : ArrayList<Harbor> {
+    fun getCloserHarborList(context : Context, myPosition : Location, harborList : ArrayList<Harbor>
+                            , param: Callback) : ArrayList<Harbor> {
         var closerHarborList : ArrayList<Harbor> = ArrayList<Harbor>()
         var result : FloatArray = FloatArray(1)
         for(i in 0 until harborList.size) {
@@ -115,12 +117,14 @@ class HarborManager {
                 closeHarbor.harborLat.toDouble(), closeHarbor.harborLon.toDouble(), result)
             if (result.first() * 0.001 < 16) {
 
-               closeHarbor = getPriceDatas(context, closeHarbor.harborId, closeHarbor)
-                closerHarborList.add(closeHarbor)
+               closeHarbor = getPriceDatas(context, closeHarbor.harborId, closeHarbor, param)
+               closerHarborList.add(closeHarbor)
 
             }
         }
+
         param.onSuccess(true)
+
         Log.d("API", "liste closer : "+closerHarborList.size.toString())
         return closerHarborList
     }

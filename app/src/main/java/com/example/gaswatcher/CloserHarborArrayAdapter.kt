@@ -37,9 +37,9 @@ class CloserHarborArrayAdapter(context : Context, private val closerHarborList :
         harborJour = convertView.findViewById(R.id.tv_date)
         //**** affectation des elements du layout
         harborNom.text = closerHarborList[position].harborNom
-        harborGazole.text = closerHarborList[position].harborGazole
-        harborSp98.text = closerHarborList[position].harborSp98
-        harborJour.text = closerHarborList[position].harborJour
+        harborGazole.text = "Gazole : " + closerHarborList[position].harborGazole
+        harborSp98.text = "SP98 : " + closerHarborList[position].harborSp98
+        harborJour.text = "Date : "+closerHarborList[position].harborJour
         return convertView
     }
 

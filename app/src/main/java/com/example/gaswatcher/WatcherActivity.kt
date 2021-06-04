@@ -145,20 +145,18 @@ class WatcherActivity : AppCompatActivity() {
                             myPosition.longitude = harborPosition.harborLon.toDouble()
 
                             var closerHarborList : ArrayList<Harbor> = ArrayList<Harbor>()
-                           var dataOK : Boolean = false
-
+                            val adapter = CloserHarborArrayAdapter(applicationContext, closerHarborList)
                             closerHarborList = harborManager.getCloserHarborList(applicationContext,
                                 myPosition, harborManager.harborList, object :
                                     HarborManager.Callback {
                                     override fun onSuccess(result: Boolean?) {
-                                       dataOK = true
+                                        val adapter = CloserHarborArrayAdapter(applicationContext, closerHarborList)
+                                        lw_closerHarbor.adapter = adapter
+                                        adapter.notifyDataSetChanged()
+                                       Log.i("API", "liste closer sortie : "+ closerHarborList.toString())
                                     }
                                 })
-                            if (dataOK) {
-                                val adapter : CloserHarborArrayAdapter = CloserHarborArrayAdapter(applicationContext, closerHarborList)
-                                lw_closerHarbor.adapter = adapter
-                                Log.i("API", "liste closer sortie : "+ closerHarborList.size)
-                            }
+
                         }
 
                     }
